@@ -188,7 +188,7 @@ button, input, select { font-family: inherit; }
 
 .hopital-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 4px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.12s; }
 .hopital-row:hover { background: var(--page-bg); }
-.hopital-row .name { font-size: 0.87rem; flex: 1; }
+.hopital-row .name { font-size: 0.87rem; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hopital-row .mini-bar-track { width: 60px; height: 6px; border-radius: 4px; background: var(--border); overflow: hidden; flex-shrink: 0; }
 .hopital-row .mini-bar-fill { height: 100%; border-radius: 4px; }
 .hopital-row .taux-tag { font-size: 0.76rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; min-width: 52px; text-align: center; }
