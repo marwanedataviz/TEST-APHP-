@@ -1,0 +1,149 @@
+// Coordonnées connues + périmètre d'exclusion — utilisé par import.js
+window.HOPITAL_COORDS = {
+  "GH A.CHENEVIER-H.MONDOR": [
+    48.7975,
+    2.4497
+  ],
+  "GH ARMAND TROUSSEAU-LA ROCHE GUYON": [
+    48.8399,
+    2.4014
+  ],
+  "GH BROCA-LA COLLEGIALE": [
+    48.8339,
+    2.3417
+  ],
+  "GH COCHIN": [
+    48.8375,
+    2.3372
+  ],
+  "GH LARIBOISIERE FERNAND WIDAL": [
+    48.8814,
+    2.3554
+  ],
+  "GROUPE HOSPITAL.NECKER ENFANTS MALADES": [
+    48.8461,
+    2.3151
+  ],
+  "GROUPE HOSPITALIER PITIE-LA SALPETRIERE": [
+    48.8377,
+    2.3654
+  ],
+  "HEGP": [
+    48.8386,
+    2.2724
+  ],
+  "HOPITAL ADELAIDE HAUTVAL": [
+    48.8896,
+    2.3547
+  ],
+  "HOPITAL AMBROISE PARE": [
+    48.8347,
+    2.2019
+  ],
+  "HOPITAL ANTOINE BECLERE": [
+    48.7737,
+    2.2707
+  ],
+  "HOPITAL AVICENNE": [
+    48.9308,
+    2.3606
+  ],
+  "HOPITAL BEAUJON": [
+    48.9106,
+    2.3053
+  ],
+  "HOPITAL BICHAT": [
+    48.8975,
+    2.3316
+  ],
+  "HOPITAL BRETONNEAU": [
+    48.8976,
+    2.3378
+  ],
+  "HOPITAL CHARLES FOIX": [
+    48.7975,
+    2.3986
+  ],
+  "HOPITAL CORENTIN CELTON": [
+    48.8226,
+    2.2731
+  ],
+  "HOPITAL DE BICETRE": [
+    48.802,
+    2.3573
+  ],
+  "HOPITAL DE LA ROCHE-GUYON": [
+    49.0847,
+    1.6167
+  ],
+  "HOPITAL DE VAUGIRARD-GABRIEL PALLEZ": [
+    48.8377,
+    2.2976
+  ],
+  "HOPITAL DUPUYTREN": [
+    48.7089,
+    2.4103
+  ],
+  "HOPITAL EMILE ROUX": [
+    48.7908,
+    2.4358
+  ],
+  "HOPITAL GEORGES CLEMENCEAU": [
+    48.7908,
+    2.446
+  ],
+  "HOPITAL JEAN VERDIER": [
+    48.9346,
+    2.4308
+  ],
+  "HOPITAL LOUIS MOURIER": [
+    48.9083,
+    2.2489
+  ],
+  "HOPITAL PAUL BROUSSE": [
+    48.7891,
+    2.3673
+  ],
+  "HOPITAL PAUL DOUMER": [
+    48.9385,
+    2.3181
+  ],
+  "HOPITAL RAYMOND POINCARE": [
+    48.8022,
+    2.1289
+  ],
+  "HOPITAL RENE MURET - BIGOTTINI": [
+    48.9385,
+    2.4181
+  ],
+  "HOPITAL ROBERT DEBRE": [
+    48.8813,
+    2.3969
+  ],
+  "HOPITAL ROTHSCHILD": [
+    48.8532,
+    2.3934
+  ],
+  "HOPITAL SAINT ANTOINE": [
+    48.8494,
+    2.3822
+  ],
+  "HOPITAL SAINT LOUIS": [
+    48.8722,
+    2.3672
+  ],
+  "HOPITAL STE PERINE": [
+    48.8567,
+    2.2661
+  ],
+  "HOPITAL TENON": [
+    48.86,
+    2.3986
+  ],
+  "HOTEL-DIEU DE PARIS": [
+    48.8531,
+    2.3486
+  ]
+};
+
+window.EXCLUDE_ENTITIES = ["ADMINISTRATION GENERALE A.P.H.P.", "AGEPS", "EEAP SAN SALVADOUR", "HOPITAL MARITIME DE BERCK", "HOPITAL MARIN D HENDAYE", "HOPITAL SAN SALVADOUR", "HOSPITALISATION A DOMICILE", "MAS SAN SALVADOUR"];

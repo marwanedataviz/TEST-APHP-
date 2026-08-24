@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Suivi déploiement — AP-HP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Bloc 1 : bandeau de résumé global -->
+  <div class="summary-bar">
+    <div class="summary-top">
+      <div class="brand" id="brandTitle">Suivi déploiement<span class="sub" id="brandSub">Hospitalisation Complète · AP-HP</span></div>
+
+      <div class="app-switch" id="appSwitch">
+        <button class="app-switch-btn active" data-app="hc">Hospitalisation Complète</button>
+        <button class="app-switch-btn" data-app="cm">Chambre mortuaire</button>
+      </div>
+
+      <div class="summary-block">
+        <div class="num" id="tauxGlobal">–</div>
+        <div class="lbl">Taux global</div>
+      </div>
+      <div class="summary-block" id="sbDeploye" style="display:none">
+        <div class="num" id="nbDeploye" style="color:var(--deploye)">–</div>
+        <div class="lbl">Sites déployés</div>
+      </div>
+      <div class="summary-block">
+        <div class="num alert" id="nbAlerte">–</div>
+        <div class="lbl" id="lblAlerte">Sites non déployés</div>
+      </div>
+      <div class="summary-block" id="sbNonConcerne" style="display:none">
+        <div class="num" id="nbNonConcerne" style="color:var(--muted)">–</div>
+        <div class="lbl">Sites non concernés</div>
+      </div>
+
+      <span style="flex:1"></span>
+
+      <div class="import-zone">
+        <label class="import-btn" title="Importer un nouvel export Excel pour l'applicatif actuellement sélectionné (filet de sécurité — la mise à jour principale se fait via generate_data.py)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <input type="file" id="fileInput" accept=".xlsx" style="display:none" />
+        </label>
+        <span id="importMsg" class="import-msg"></span>
+        <span id="lastFileInfo" class="last-file-info"></span>
+      </div>
+    </div>
+
+    <div class="ghu-strip" id="ghuStrip"></div>
+  </div>
+
+  <!-- Blocs 2 + 3 : carte (40%) + fiche (60%) -->
+  <div class="layout">
+
+    <div class="panel map-pane">
+      <div id="map"></div>
+
+      <div class="search-wrap">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Rechercher un hôpital..." autocomplete="off" />
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+
+      <div class="zoom-hint" id="zoomHint" style="display:none"></div>
+
+      <div class="map-legend">
+        <div id="ghuLegend"></div>
+        <div style="height:1px;background:var(--border);margin:8px 0"></div>
+        <div class="legend-row"><span class="legend-shape" style="border-radius:50%;width:9px;height:9px;border:2px solid var(--ink);background:transparent"></span> Grande bulle = GHU</div>
+        <div class="legend-row"><span class="legend-shape" style="border-radius:50%;width:6px;height:6px;border:2px solid var(--ink);background:transparent"></span> Petite bulle = hôpital</div>
+      </div>
+
+      <div class="demo-badge" id="demoBadge" style="display:none">Données de démonstration</div>
+    </div>
+
+    <div class="panel detail-pane" id="detailPane">
+      <div class="state-empty" id="stateEmpty">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>Sélectionnez un GHU sur la carte ou recherchez un hôpital pour consulter les données de déploiement.</p>
+      </div>
+
+      <div id="stateListe" style="display:none">
+        <div class="ghu-header">
+          <div>
+            <h2 id="ghuName"></h2>
+            <div class="meta" id="ghuMeta"></div>
+          </div>
+          <div class="big-taux" id="ghuTaux"></div>
+        </div>
+        <div id="hopitalList"></div>
+      </div>
+
+      <div id="stateDetail" style="display:none">
+        <button class="back-link" id="backLink" style="display:none">← Retour aux hôpitaux du GHU</button>
+
+        <!-- Variante avec détail UF (Hospitalisation Complète) -->
+        <div id="stateDetailUf" style="display:none">
+          <div class="hopital-header">
+            <h2 id="hName"></h2>
+            <div class="gh-name" id="hGh"></div>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-box main">
+              <div class="value" id="kpiTaux">–</div>
+              <div class="label">Taux de déploiement</div>
+            </div>
+            <div class="kpi-box deploye">
+              <div class="value" id="kpiDeploye">–</div>
+              <div class="label">Déployé</div>
+            </div>
+            <div class="kpi-box non-concerne">
+              <div class="value" id="kpiNonConcerne">–</div>
+              <div class="label">Non concerné</div>
+            </div>
+          </div>
+
+          <div class="progress-summary">
+            <div class="progress-bar-track"><div class="progress-bar-fill" id="hProgressFill"></div></div>
+            <div class="progress-frac" id="hProgressFrac">–</div>
+          </div>
+
+          <div class="filter-row">
+            <input type="text" id="tableSearch" placeholder="Rechercher un service ou une UF..." />
+            <select id="statutFilter">
+              <option value="">Tous statuts</option>
+              <option value="Déployé">Déployé</option>
+              <option value="Non Déployé">Non déployé</option>
+              <option value="Non concerné">Non concerné</option>
+            </select>
+          </div>
+          <div class="row-count" id="rowCount"></div>
+
+          <div class="table-scroll">
+            <table class="uf-table">
+              <thead><tr><th>Service</th><th>UF</th><th>Statut</th></tr></thead>
+              <tbody id="ufTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Variante site simple, sans UF (Chambre mortuaire) -->
+        <div id="stateDetailSite" style="display:none">
+          <div class="hopital-header">
+            <h2 id="hNameSite"></h2>
+            <div class="gh-name" id="hGhSite"></div>
+          </div>
+          <div class="site-status-card">
+            <div style="color:var(--muted);font-size:0.85rem">Statut de déploiement</div>
+            <div class="ssc-badge" id="siteStatusBadge"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bloc 4 : recherche globale par UF (uniquement pour les applicatifs avec détail UF) -->
+  <div class="panel uf-search-pane" id="ufSearchSection">
+    <h2 class="block-title">Recherche globale par UF</h2>
+    <p class="block-subtitle">Retrouvez une unité fonctionnelle (UF) dans tous les hôpitaux où elle existe — utile pour les ~204 UF partagées entre plusieurs établissements.</p>
+
+    <div class="search-box uf-search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="ufSearchInput" placeholder="Rechercher une UF (ex: UF 234, cardiologie...)..." autocomplete="off" />
+    </div>
+
+    <div id="ufSearchResults" class="uf-search-results"></div>
+  </div>
+
+  <!-- Bloc 5 : mosaïque des hôpitaux (Hospitalisation Complète uniquement) -->
+  <div class="panel mosaic-pane" id="mosaicSection">
+    <h2 class="block-title">Vue d'ensemble — mosaïque des hôpitaux</h2>
+    <p class="block-subtitle">Chaque bloc = un hôpital, de taille égale. Couleur = taux de déploiement. Clique sur un bloc pour ouvrir sa fiche.</p>
+    <div id="mosaicContainer" class="mosaic-container"></div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="coords.js"></script>
+<script src="data.js"></script>
+<script src="import.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
