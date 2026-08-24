@@ -266,7 +266,7 @@ function showGhuListe(ghNom) {
     if (data.hasUF) {
       const c = statusColor(h.taux);
       row.innerHTML = `<span class="name">${h.nom}</span>
-        <span class="mini-bar-track"><span class="mini-bar-fill" style="width:${barWidth(h.taux)}%;background:${c}"></span></span>
+        <span class="mini-bar-track"><span class="mini-bar-fill" style="width:${h.taux}%;background:${c}"></span></span>
         <span class="taux-tag" style="background:${c}22;color:${c}">${h.taux}%</span>`;
     } else {
       const c = statusPillColor(h.statut);
@@ -301,7 +301,7 @@ function showHopitalDetail(nom, fromGhu) {
     document.getElementById('kpiNonConcerne').textContent = h.non_concerne;
 
     const totalCalc = h.deploye + h.non_deploye;
-    document.getElementById('hProgressFill').style.width = barWidth(totalCalc > 0 ? (100 * h.deploye / totalCalc) : 0) + '%';
+    document.getElementById('hProgressFill').style.width = (totalCalc > 0 ? (100 * h.deploye / totalCalc) : 0) + '%';
     document.getElementById('hProgressFrac').textContent = `${h.deploye}/${totalCalc} déployés`;
 
     document.getElementById('tableSearch').value = '';
