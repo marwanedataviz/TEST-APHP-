@@ -9,6 +9,8 @@ Usage : python generate_data.py
 À chaque mise à jour d'un des fichiers Excel, relancer ce script pour régénérer data.js.
 """
 import json
+import random
+from collections import Counter
 import pandas as pd
 
 HC_FILE = "Dep_APHP.xlsx"
@@ -144,7 +146,11 @@ def load_hospitalisation_complete(path):
         non_deploye = int((sub['statut'] == 'Non Déployé').sum())  # 0 attendu, gardé si le fichier évolue
         total_calc = deploye + non_concerne + non_deploye
         # Formule : Déployé / (Déployé + Non concerné) quand 'Non Déployé' n'existe pas dans les données.
-        denom = deploye + non_concerne if non_deploye == 0 else deploye + non_deploye
+        # Formule demandée par l'équipe : Déployé / (Total - Non concerné), équivalent à
+        # Déployé / (Déployé + Non Déployé). Comme ce fichier n'a jamais de 'Non Déployé',
+        # ça donnera mécaniquement 100% dès qu'il y a au moins 1 'Déployé' — comportement
+        # attendu et validé par l'équipe.
+        denom = deploye + non_deploye
         taux = round(100 * deploye / denom, 1) if denom > 0 else 0
 
         services = [
@@ -160,7 +166,7 @@ def load_hospitalisation_complete(path):
         })
 
     hopitaux.sort(key=lambda x: x['nom'])
-    ghu = aggregate_ghu(hopitaux, taux_mode='hc_fallback')
+    ghu = aggregate_ghu(hopitaux, taux_mode='standard')
     return {"label": "Hospitalisation Complète", "hasUF": True, "date_maj": date_maj,
             "is_demo_data": False, "hopitaux": hopitaux, "ghu": ghu}
 
@@ -188,12 +194,33 @@ def load_chambre_mortuaire(path):
             continue
         statut = row.get('Chambre mortuaire Statut')
         statut = statut if pd.notna(statut) else 'Non renseigné'
+        date_maj_site = row.get('Chambre mortuaire Date')
+        date_maj_site = date_maj_site.strftime('%Y-%m-%d') if pd.notna(date_maj_site) else None
+
+        # Indicateurs de formation FICTIFS (aucune donnée réelle disponible pour ça
+        # aujourd'hui) — générés une fois via une seed fixe pour rester stables d'un
+        # rechargement à l'autre. Plus de formations en moyenne si le site est "Déployé".
+        random.seed(hash(nom) % (2**31))
+        if statut == 'Déployé':
+            nb_formations = random.randint(3, 8)
+            nb_personnes = random.randint(15, 60)
+        elif statut == 'Non Déployé':
+            nb_formations = random.randint(0, 2)
+            nb_personnes = random.randint(0, 10)
+        else:
+            nb_formations = 0
+            nb_personnes = 0
+
         hopitaux.append({
             "nom": nom, "gh": row.get('Libelle GH', ''), "lat": coord[0], "lon": coord[1],
             "statut": statut,
             "deploye": 1 if statut == 'Déployé' else 0,
             "non_deploye": 1 if statut == 'Non Déployé' else 0,
             "non_concerne": 1 if statut == 'Non concerné' else 0,
+            "nb_formations": nb_formations,
+            "nb_personnes_formees": nb_personnes,
+            "is_demo_indicateurs": True,
+            "date_maj_site": date_maj_site
         })
 
     hopitaux.sort(key=lambda x: x['nom'])
@@ -202,9 +229,116 @@ def load_chambre_mortuaire(path):
             "is_demo_data": False, "hopitaux": hopitaux, "ghu": ghu}
 
 
+MOSAIC_APPLICATIFS = [
+    {"id": "orbis", "label": "Orbis", "categorie": "bleu", "fictif": True},
+    {"id": "circuit_mater", "label": "Circuit Mater", "categorie": "bleu", "fictif": True},
+    {"id": "hospit_complete", "label": "Hospitalisation Complète", "categorie": "bleu", "fictif": False},
+    {"id": "glims", "label": "GLIMS v10", "categorie": "jaune", "fictif": True},
+    {"id": "calopix", "label": "Calopix", "categorie": "jaune", "fictif": True},
+    {"id": "pacs", "label": "PACS Locaux", "categorie": "jaune", "fictif": True},
+    {"id": "teleservice", "label": "Téléservice restauration", "categorie": "violet", "fictif": True},
+    {"id": "pharmaclass", "label": "PHARMACLASS", "categorie": "vert", "fictif": False},
+    {"id": "hed", "label": "HED", "categorie": "vert", "fictif": False},
+    {"id": "chimio", "label": "CHIMIO V6", "categorie": "vert", "fictif": False},
+    {"id": "sim_pmsi", "label": "SIM PMSI", "categorie": "vert", "fictif": False},
+]
+
+STATUT5 = ['Déployé', 'Partiellement déployé', 'Programmé', 'A programmer', 'Non concerné']
+
+
+def dominant_statut(statuts):
+    """Statut le plus fréquent dans une liste (utilisé pour l'agrégation par GHU)."""
+    statuts = [s for s in statuts if s]
+    if not statuts:
+        return 'Non concerné'
+    return Counter(statuts).most_common(1)[0][0]
+
+
+def hc_taux_to_statut(taux, has_data):
+    """Convertit le taux d'un hôpital HC (0-100%) en un des 5 statuts, pour la mosaïque."""
+    if not has_data:
+        return 'Non concerné'
+    if taux >= 99.95:
+        return 'Déployé'
+    if taux <= 0.05:
+        return 'A programmer'
+    return 'Partiellement déployé'
+
+
+def build_mosaic(hc_hopitaux, maille_df):
+    """Construit les données par hôpital puis par GHU pour chaque applicatif de la mosaïque.
+    Utilise les vraies données quand elles existent (Hospit. Complète, Pharmaclass, HED,
+    Chimio V6, Sim PMSI), génère des données fictives pour le reste (Orbis, Circuit Mater,
+    GLIMS v10, Calopix, PACS Locaux, Téléservice restauration — 0 donnée réelle disponible).
+    """
+    random.seed(42)
+    gh_lookup = {h['nom']: h['gh'] for h in hc_hopitaux}
+    noms_hopitaux = list(HOPITAL_COORDS.keys())
+
+    # Statuts réels tirés du fichier maille-site pour les 4 applicatifs disponibles
+    real_by_app = {}
+    for app_id, col_name in [('pharmaclass', 'PHARMACLASS'), ('hed', 'HED'),
+                              ('chimio', 'CHIMIO V6'), ('sim_pmsi', 'SIM PMSI')]:
+        col = col_name + ' Statut'
+        mapping = {}
+        if maille_df is not None and col in maille_df.columns:
+            for _, row in maille_df.iterrows():
+                nom = row.get('Libelle Hopital')
+                statut = row.get(col)
+                if not nom or nom not in HOPITAL_COORDS or not isinstance(statut, str):
+                    continue
+                # Normalise la casse ('a programmer' -> 'A programmer')
+                statut = 'A programmer' if statut.strip().lower() == 'a programmer' else statut.strip()
+                if statut in STATUT5:
+                    mapping[nom] = statut
+        real_by_app[app_id] = mapping
+
+    # Statut HC dérivé du taux déjà calculé par hôpital
+    hc_by_hopital = {h['nom']: h for h in hc_hopitaux}
+
+    par_hopital = {}  # { nom_hopital: { app_id: statut } }
+    for nom in noms_hopitaux:
+        par_hopital[nom] = {}
+        for app in MOSAIC_APPLICATIFS:
+            app_id = app['id']
+            if app_id == 'hospit_complete':
+                h = hc_by_hopital.get(nom)
+                if h:
+                    has_data = (h['deploye'] + h['non_deploye']) > 0
+                    par_hopital[nom][app_id] = hc_taux_to_statut(h['taux'], has_data)
+                else:
+                    par_hopital[nom][app_id] = 'Non concerné'
+            elif not app['fictif'] and nom in real_by_app.get(app_id, {}):
+                par_hopital[nom][app_id] = real_by_app[app_id][nom]
+            else:
+                # Fictif : tirage aléatoire pondéré (reproductible via la seed fixée plus haut)
+                par_hopital[nom][app_id] = random.choices(
+                    STATUT5, weights=[30, 20, 15, 20, 15]
+                )[0]
+
+    # Agrégation par GHU : statut dominant (le plus fréquent) parmi les hôpitaux du groupe
+    par_ghu = {}
+    for nom, gh in gh_lookup.items():
+        par_ghu.setdefault(gh, {})
+    for app in MOSAIC_APPLICATIFS:
+        app_id = app['id']
+        for gh in par_ghu:
+            membres = [n for n, g in gh_lookup.items() if g == gh]
+            statuts = [par_hopital[n][app_id] for n in membres if n in par_hopital]
+            par_ghu[gh][app_id] = dominant_statut(statuts)
+
+    return {
+        "applicatifs": MOSAIC_APPLICATIFS,
+        "par_ghu": par_ghu
+    }
+
+
 def main():
     hc = load_hospitalisation_complete(HC_FILE)
     cm = load_chambre_mortuaire(CM_FILE)
+
+    maille_df = pd.read_excel(CM_FILE, sheet_name=0, header=1)
+    mosaic = build_mosaic(hc['hopitaux'], maille_df)
 
     applicatifs = {"hc": hc, "cm": cm}
 
@@ -213,9 +347,13 @@ def main():
         f.write("window.APPLICATIFS = ")
         f.write(json.dumps(applicatifs, ensure_ascii=False, indent=2))
         f.write(";\n")
+        f.write("window.MOSAIC_APPLICATIFS_DATA = ")
+        f.write(json.dumps(mosaic, ensure_ascii=False, indent=2))
+        f.write(";\n")
 
     print(f"OK — HC : {len(hc['hopitaux'])} hôpitaux, {sum(len(h['services']) for h in hc['hopitaux'])} lignes UF")
     print(f"OK — CM : {len(cm['hopitaux'])} hôpitaux")
+    print(f"OK — Mosaïque applicatifs : {len(mosaic['applicatifs'])} applicatifs x {len(mosaic['par_ghu'])} GHU")
 
 
 if __name__ == '__main__':

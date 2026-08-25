@@ -56,7 +56,7 @@ function parseHC(rows, fileName) {
   const hopitaux = Object.keys(byHopital).sort().map(nom => {
     const h = byHopital[nom];
     // Pas de 'Non Déployé' dans ce fichier -> taux = Déployé / (Déployé + Non concerné)
-    const denom = h.non_deploye > 0 ? (h.deploye + h.non_deploye) : (h.deploye + h.non_concerne);
+    const denom = h.deploye + h.non_deploye;
     const taux = denom > 0 ? Math.round((100 * h.deploye / denom) * 10) / 10 : 0;
     const [lat, lon] = window.HOPITAL_COORDS[nom];
     return {

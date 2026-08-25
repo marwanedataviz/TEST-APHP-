@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<link rel="stylesheet" href="style.css?v=1787566219" />
+<link rel="stylesheet" href="style.css?v=1787662826" />
 </head>
 <body>
 
@@ -72,7 +72,10 @@
       <div class="zoom-hint" id="zoomHint" style="display:none"></div>
 
       <div class="map-legend">
-        <div id="ghuLegend"></div>
+        <div class="legend-row"><span class="legend-shape" style="background:#2FA37A"></span> 100% déployé</div>
+        <div class="legend-row"><span class="legend-shape" style="background:#F2A33B"></span> En cours</div>
+        <div class="legend-row"><span class="legend-shape" style="background:#E14E42"></span> À déployer</div>
+        <div class="legend-row"><span class="legend-shape" style="background:#A6B1C4"></span> Non concerné</div>
         <div style="height:1px;background:var(--border);margin:8px 0"></div>
         <div class="legend-row"><span class="legend-shape" style="border-radius:50%;width:9px;height:9px;border:2px solid var(--ink);background:transparent"></span> Grande bulle = GHU</div>
         <div class="legend-row"><span class="legend-shape" style="border-radius:50%;width:6px;height:6px;border:2px solid var(--ink);background:transparent"></span> Petite bulle = hôpital</div>
@@ -157,6 +160,18 @@
             <div style="color:var(--muted);font-size:0.85rem">Statut de déploiement</div>
             <div class="ssc-badge" id="siteStatusBadge"></div>
           </div>
+          <div class="kpi-row" style="margin-top:8px">
+            <div class="kpi-box deploye">
+              <div class="value" id="kpiNbFormations">–</div>
+              <div class="label">Formations réalisées</div>
+            </div>
+            <div class="kpi-box">
+              <div class="value" id="kpiNbPersonnes">–</div>
+              <div class="label">Personnes formées</div>
+            </div>
+          </div>
+          <div class="info-note">Indicateurs de formation à titre indicatif (données fictives, aucune donnée réelle disponible pour l'instant).</div>
+          <div class="info-note" id="siteDateMaj" style="display:none"></div>
         </div>
       </div>
     </div>
@@ -183,13 +198,27 @@
     <div id="mosaicContainer" class="mosaic-container"></div>
   </div>
 
+  <!-- Bloc 6 : mosaïque des applicatifs par GH -->
+  <div class="panel app-mosaic-pane" id="appMosaicSection">
+    <h2 class="block-title">Mosaïque des applicatifs par GH</h2>
+    <p class="block-subtitle">Chaque colonne = une catégorie d'applicatifs. Couleur des cases = statut de déploiement dominant pour le GH. Certains applicatifs (Orbis, Circuit Mater, GLIMS v10, Calopix, PACS Locaux, Téléservice restauration) n'ont pas encore de données réelles disponibles — affichés à titre indicatif.</p>
+    <div class="app-mosaic-legend">
+      <div class="legend-row"><span class="legend-shape" style="background:#2FA37A"></span> Déployé</div>
+      <div class="legend-row"><span class="legend-shape" style="background:#F2A33B"></span> Partiellement déployé</div>
+      <div class="legend-row"><span class="legend-shape" style="background:#C23B30"></span> Programmé</div>
+      <div class="legend-row"><span class="legend-shape" style="background:#F0958C"></span> À programmer</div>
+      <div class="legend-row"><span class="legend-shape" style="background:#A6B1C4"></span> Non concerné</div>
+    </div>
+    <div id="appMosaicContainer" class="app-mosaic-grid"></div>
+  </div>
+
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="coords.js?v=1787566219"></script>
-<script src="data.js?v=1787566219"></script>
-<script src="import.js?v=1787566219"></script>
-<script src="app.js?v=1787566219"></script>
+<script src="coords.js?v=1787662826"></script>
+<script src="data.js?v=1787662826"></script>
+<script src="import.js?v=1787662826"></script>
+<script src="app.js?v=1787662826"></script>
 </body>
 </html>

@@ -13,11 +13,38 @@ let ghuColorMap = {};
 
 function currentData() { return APPLICATIFS[currentApp]; }
 
+// Nouveau code couleur validé par l'équipe :
+// Vert = 100% déployé · Orange = en cours · Rouge = à déployer · Gris = non concerné
+const COLOR_GREEN = '#2FA37A';
+const COLOR_ORANGE = '#F2A33B';
+const COLOR_RED = '#E14E42';
+const COLOR_GRAY = '#A6B1C4';
+
 function statusColor(taux) {
-  if (taux >= 70) return '#2FB8CE';
-  if (taux >= 10) return '#F2A33B';
-  return '#E14E42';
+  if (taux >= 99.95) return COLOR_GREEN;
+  if (taux <= 0.05) return COLOR_RED;
+  return COLOR_ORANGE;
 }
+
+// Couleur à partir d'un objet {deploye, non_deploye, non_concerne, taux} :
+// gère aussi le cas "gris" (aucune donnée applicable, tout est Non concerné).
+function statusColorFromCounts(o) {
+  const denom = (o.deploye || 0) + (o.non_deploye || 0);
+  if (denom === 0) return COLOR_GRAY;
+  return statusColor(o.taux);
+}
+
+// Palette des 5 statuts réels (mosaïque des applicatifs) — option A validée :
+// on garde les 4 familles de couleur, avec 2 nuances de rouge pour distinguer
+// "Programmé" (plus avancé) de "À programmer" (pas encore planifié).
+const STATUT5_COLOR = {
+  'Déployé': COLOR_GREEN,
+  'Partiellement déployé': COLOR_ORANGE,
+  'Programmé': '#C23B30',       // rouge foncé : à déployer, déjà planifié
+  'A programmer': '#F0958C',    // rouge clair : à déployer, pas encore planifié
+  'Non concerné': COLOR_GRAY
+};
+function statut5Color(statut) { return STATUT5_COLOR[statut] || COLOR_GRAY; }
 
 // Transformation visuelle pour que les barres restent lisibles même entre 90% et 100%
 // (sans quoi deux valeurs comme 92,9% et 98% paraissent quasi identiques à l'oeil)
@@ -97,7 +124,7 @@ function popupHtmlGhu(g) {
   return `<div class="map-popup">
     <div class="mp-name">${g.nom}</div>
     <div class="mp-gh">${g.nb_hopitaux} hôpitaux</div>
-    <div class="mp-row"><span>Taux</span><span class="mp-taux" style="color:${statusColor(g.taux)}">${g.taux}%</span></div>
+    <div class="mp-row"><span>Taux</span><span class="mp-taux" style="color:${statusColorFromCounts(g)}">${g.taux}%</span></div>
     <div class="mp-row"><span>Déployé</span><span>${g.deploye}</span></div>
     <div class="mp-row"><span>Non déployé</span><span>${g.non_deploye}</span></div>
   </div>`;
@@ -108,7 +135,7 @@ function popupHtmlHopital(h) {
     return `<div class="map-popup">
       <div class="mp-name">${h.nom}</div>
       <div class="mp-gh">${h.gh}</div>
-      <div class="mp-row"><span>Taux</span><span class="mp-taux" style="color:${statusColor(h.taux)}">${h.taux}%</span></div>
+      <div class="mp-row"><span>Taux</span><span class="mp-taux" style="color:${statusColorFromCounts(h)}">${h.taux}%</span></div>
       <div class="mp-row"><span>Déployé</span><span>${h.deploye}</span></div>
       <div class="mp-row"><span>Non déployé</span><span>${h.non_deploye}</span></div>
     </div>`;
@@ -128,8 +155,8 @@ function statusPillColor(statut) {
 }
 
 function markerColorForHopital(h) {
-  // Couleur du marqueur : par taux si l'applicatif a des UF, par statut sinon
-  return currentData().hasUF ? ghuColorMap[h.gh] : statusPillColor(h.statut);
+  // Couleur du marqueur : toujours par statut de déploiement (aligné avec la mosaïque et les barres)
+  return currentData().hasUF ? statusColorFromCounts(h) : statusPillColor(h.statut);
 }
 
 function buildMarkers() {
@@ -140,7 +167,7 @@ function buildMarkers() {
 
   data.ghu.forEach(g => {
     const radius = 13 + Math.min(11, Math.sqrt(g.total || g.nb_hopitaux) / 2);
-    const color = ghuColorMap[g.nom] || '#3FC1D6';
+    const color = statusColorFromCounts(g);
     const marker = L.circleMarker([g.lat, g.lon], {
       radius, fillColor: color, fillOpacity: 0.85, color: '#fff', weight: 2.5
     });
@@ -212,7 +239,7 @@ function renderSummaryBar() {
     pill.style.borderColor = ghColor + '55';
     pill.innerHTML = `<span class="dot" style="background:${ghColor}"></span>
       <span>${g.nom.replace('AP-HP.', '')}</span>
-      <span class="taux" style="color:${statusColor(g.taux)}">${g.taux}%</span>`;
+      <span class="taux" style="color:${statusColorFromCounts(g)}">${g.taux}%</span>`;
     pill.addEventListener('click', () => {
       const bounds = data.hopitaux.filter(h => h.gh === g.nom).map(h => [h.lat, h.lon]);
       if (bounds.length) map.fitBounds(bounds, { padding: [60, 60], maxZoom: ZOOM_THRESHOLD + 1 });
@@ -220,11 +247,6 @@ function renderSummaryBar() {
     });
     strip.appendChild(pill);
   });
-
-  const ghuLegend = document.getElementById('ghuLegend');
-  ghuLegend.innerHTML = data.ghu.map(g =>
-    `<div class="legend-row"><span class="legend-shape" style="background:${ghuColorMap[g.nom]}"></span> ${g.nom.replace('AP-HP.', '')}</div>`
-  ).join('');
 }
 
 // ---- États de la fiche ----
@@ -256,7 +278,7 @@ function showGhuListe(ghNom) {
   document.getElementById('ghuMeta').textContent = `${hopitaux.length} hôpitaux`;
   const tauxEl = document.getElementById('ghuTaux');
   tauxEl.textContent = g.taux + '%';
-  tauxEl.style.color = statusColor(g.taux);
+  tauxEl.style.color = statusColorFromCounts(g);
 
   const list = document.getElementById('hopitalList');
   list.innerHTML = '';
@@ -264,7 +286,7 @@ function showGhuListe(ghNom) {
     const row = document.createElement('div');
     row.className = 'hopital-row';
     if (data.hasUF) {
-      const c = statusColor(h.taux);
+      const c = statusColorFromCounts(h);
       row.innerHTML = `<span class="name">${h.nom}</span>
         <span class="mini-bar-track"><span class="mini-bar-fill" style="width:${h.taux}%;background:${c}"></span></span>
         <span class="taux-tag" style="background:${c}22;color:${c}">${h.taux}%</span>`;
@@ -296,7 +318,7 @@ function showHopitalDetail(nom, fromGhu) {
     document.getElementById('hName').textContent = h.nom;
     document.getElementById('hGh').textContent = h.gh;
     document.getElementById('kpiTaux').textContent = h.taux + '%';
-    document.getElementById('kpiTaux').style.color = statusColor(h.taux);
+    document.getElementById('kpiTaux').style.color = statusColorFromCounts(h);
     document.getElementById('kpiDeploye').textContent = h.deploye;
     document.getElementById('kpiNonConcerne').textContent = h.non_concerne;
 
@@ -319,6 +341,15 @@ function showHopitalDetail(nom, fromGhu) {
       `<span class="ssc-shape status-shape ${cls}"></span> ${h.statut}`;
     document.getElementById('siteStatusBadge').style.background = c + '18';
     document.getElementById('siteStatusBadge').style.color = c;
+    document.getElementById('kpiNbFormations').textContent = h.nb_formations ?? '–';
+    document.getElementById('kpiNbPersonnes').textContent = h.nb_personnes_formees ?? '–';
+    const dateEl = document.getElementById('siteDateMaj');
+    if (h.date_maj_site) {
+      dateEl.textContent = `Dernière mise à jour du statut : ${new Date(h.date_maj_site).toLocaleDateString('fr-FR')}`;
+      dateEl.style.display = 'block';
+    } else {
+      dateEl.style.display = 'none';
+    }
   }
 
   document.getElementById('stateDetail').style.display = 'block';
@@ -490,11 +521,52 @@ function renderMosaic() {
   items.forEach(hop => {
     const block = document.createElement('div');
     block.className = 'mosaic-block';
-    block.style.background = statusColor(hop.taux);
+    block.style.background = statusColorFromCounts(hop);
     block.title = `${hop.nom} — ${hop.taux}% (${hop.total} UF)`;
     block.innerHTML = `<div class="mb-name">${hop.nom}</div><div class="mb-taux">${hop.taux}%</div>`;
     block.addEventListener('click', () => { showHopitalDetail(hop.nom, null); });
     container.appendChild(block);
+  });
+}
+
+// ---- Bloc 6 : mosaïque des applicatifs par GH ----
+
+const CATEGORIE_COLOR = { bleu: '#3D74B0', jaune: '#F0C24B', violet: '#7C4DBE', vert: '#4C9A6B' };
+const CATEGORIE_ORDER = ['bleu', 'jaune', 'violet', 'vert'];
+
+function renderAppMosaic() {
+  const section = document.getElementById('appMosaicSection');
+  const mosaic = window.MOSAIC_APPLICATIFS_DATA;
+  if (!mosaic) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+
+  const container = document.getElementById('appMosaicContainer');
+  container.innerHTML = '';
+
+  const byCategorie = {};
+  CATEGORIE_ORDER.forEach(c => byCategorie[c] = []);
+  mosaic.applicatifs.forEach(a => byCategorie[a.categorie].push(a));
+
+  const ghNames = Object.keys(mosaic.par_ghu).sort();
+
+  ghNames.forEach(gh => {
+    const card = document.createElement('div');
+    card.className = 'gh-app-card';
+
+    const cols = CATEGORIE_ORDER.map(cat => {
+      const apps = byCategorie[cat];
+      const chips = apps.map(a => {
+        const statut = mosaic.par_ghu[gh][a.id];
+        const color = statut5Color(statut);
+        return `<div class="gh-app-chip" style="background:${color}" title="${a.label} — ${statut}${a.fictif ? ' (fictif)' : ''}">${a.label}</div>`;
+      }).join('');
+      return `<div>
+        ${chips}
+      </div>`;
+    }).join('');
+
+    card.innerHTML = `<div class="gh-app-title">${gh}</div><div class="gh-app-columns">${cols}</div>`;
+    container.appendChild(card);
   });
 }
 
@@ -507,6 +579,7 @@ window.renderAll = function () {
   showEmptyState();
   renderUfSearch();
   renderMosaic();
+  renderAppMosaic();
 };
 
 initMap();

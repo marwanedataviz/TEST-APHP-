@@ -15,7 +15,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 67,
         "total": 115,
-        "taux": 41.7,
+        "taux": 100.0,
         "services": [
           {
             "service": "ARMPO",
@@ -603,7 +603,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 53,
         "total": 64,
-        "taux": 17.2,
+        "taux": 100.0,
         "services": [
           {
             "service": "HEM IM ONCO PED",
@@ -936,7 +936,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 10,
         "total": 17,
-        "taux": 41.2,
+        "taux": 100.0,
         "services": [
           {
             "service": "GERONTOLOGIE 1",
@@ -1034,7 +1034,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 93,
         "total": 145,
-        "taux": 35.9,
+        "taux": 100.0,
         "services": [
           {
             "service": "ANES REA MED PO",
@@ -1772,7 +1772,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 64,
         "total": 86,
-        "taux": 25.6,
+        "taux": 100.0,
         "services": [
           {
             "service": "ANESTH REA CHIR",
@@ -2215,7 +2215,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 99,
         "total": 143,
-        "taux": 30.8,
+        "taux": 100.0,
         "services": [
           {
             "service": "MATERNITE OBST",
@@ -2943,7 +2943,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 135,
         "total": 199,
-        "taux": 32.2,
+        "taux": 100.0,
         "services": [
           {
             "service": "H.G.E",
@@ -3951,7 +3951,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 99,
         "total": 99,
-        "taux": 0.0,
+        "taux": 0,
         "services": [
           {
             "service": "MED INTENS REA",
@@ -4459,7 +4459,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 1,
         "total": 1,
-        "taux": 0.0,
+        "taux": 0,
         "services": [
           {
             "service": "DEP USLD UHPAD",
@@ -4477,7 +4477,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 35,
         "total": 54,
-        "taux": 35.2,
+        "taux": 100.0,
         "services": [
           {
             "service": "ORTHOPEDIE",
@@ -4760,7 +4760,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 46,
         "total": 62,
-        "taux": 25.8,
+        "taux": 100.0,
         "services": [
           {
             "service": "ORTHO TRAUMATO",
@@ -5083,7 +5083,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 46,
         "total": 77,
-        "taux": 40.3,
+        "taux": 100.0,
         "services": [
           {
             "service": "REA MEDICO CHIR",
@@ -5481,7 +5481,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 37,
         "total": 59,
-        "taux": 37.3,
+        "taux": 100.0,
         "services": [
           {
             "service": "HEPATOLOGIE",
@@ -5789,7 +5789,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 73,
         "total": 98,
-        "taux": 25.5,
+        "taux": 100.0,
         "services": [
           {
             "service": "CARDIOLOGIE",
@@ -6292,7 +6292,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 17,
         "total": 19,
-        "taux": 10.5,
+        "taux": 100.0,
         "services": [
           {
             "service": "GERIATRIE EMASP",
@@ -6400,7 +6400,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 23,
         "total": 27,
-        "taux": 14.8,
+        "taux": 100.0,
         "services": [
           {
             "service": "SMR SLD GERIAT",
@@ -6548,7 +6548,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 17,
         "total": 26,
-        "taux": 34.6,
+        "taux": 100.0,
         "services": [
           {
             "service": "PSY ADDIC AD AG",
@@ -6691,7 +6691,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 86,
         "total": 106,
-        "taux": 18.9,
+        "taux": 100.0,
         "services": [
           {
             "service": "NEUROLOGIE",
@@ -7234,7 +7234,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 1,
         "total": 2,
-        "taux": 50.0,
+        "taux": 100.0,
         "services": [
           {
             "service": "NEUROPEDIATRIE",
@@ -7257,7 +7257,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 9,
         "total": 9,
-        "taux": 0.0,
+        "taux": 0,
         "services": [
           {
             "service": "GERONTOLOGIE",
@@ -7315,7 +7315,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 11,
         "total": 23,
-        "taux": 52.2,
+        "taux": 100.0,
         "services": [
           {
             "service": "SCE A2 SENART",
@@ -7443,7 +7443,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 15,
         "total": 28,
-        "taux": 46.4,
+        "taux": 100.0,
         "services": [
           {
             "service": "ADDICTO BI-SITE",
@@ -7596,7 +7596,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 14,
         "total": 24,
-        "taux": 41.7,
+        "taux": 100.0,
         "services": [
           {
             "service": "GERONTO 1 DECHE",
@@ -7729,7 +7729,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 40,
         "total": 52,
-        "taux": 23.1,
+        "taux": 100.0,
         "services": [
           {
             "service": "HEPATOLOGIE",
@@ -8002,7 +8002,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 46,
         "total": 61,
-        "taux": 24.6,
+        "taux": 100.0,
         "services": [
           {
             "service": "MED INTENS REA",
@@ -8320,7 +8320,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 38,
         "total": 47,
-        "taux": 19.1,
+        "taux": 100.0,
         "services": [
           {
             "service": "PSYCHIATRIE_ADD",
@@ -8568,7 +8568,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 5,
         "total": 9,
-        "taux": 44.4,
+        "taux": 100.0,
         "services": [
           {
             "service": "LONG SEJOUR",
@@ -8626,7 +8626,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 46,
         "total": 56,
-        "taux": 17.9,
+        "taux": 100.0,
         "services": [
           {
             "service": "MPR PHASE AIGUE",
@@ -8919,7 +8919,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 10,
         "total": 24,
-        "taux": 58.3,
+        "taux": 100.0,
         "services": [
           {
             "service": "SSR GERIATRIQ A",
@@ -9052,7 +9052,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 30,
         "total": 71,
-        "taux": 57.7,
+        "taux": 100.0,
         "services": [
           {
             "service": "REA MED INTENS",
@@ -9420,7 +9420,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 18,
         "total": 24,
-        "taux": 25.0,
+        "taux": 100.0,
         "services": [
           {
             "service": "MED PHY READAPT",
@@ -9553,7 +9553,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 47,
         "total": 75,
-        "taux": 37.3,
+        "taux": 100.0,
         "services": [
           {
             "service": "CARDIO TNN SAT",
@@ -9941,7 +9941,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 72,
         "total": 92,
-        "taux": 21.7,
+        "taux": 100.0,
         "services": [
           {
             "service": "DAR & BRULES",
@@ -10414,7 +10414,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 13,
         "total": 14,
-        "taux": 7.1,
+        "taux": 100.0,
         "services": [
           {
             "service": "MED DES AINES",
@@ -10497,7 +10497,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 50,
         "total": 73,
-        "taux": 31.5,
+        "taux": 100.0,
         "services": [
           {
             "service": "PNEUMO ONCO TH",
@@ -10875,7 +10875,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 43,
         "total": 45,
-        "taux": 4.4,
+        "taux": 100.0,
         "services": [
           {
             "service": "URGENCES",
@@ -11115,7 +11115,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 370,
         "total": 484,
-        "taux": 23.6
+        "taux": 100.0
       },
       {
         "nom": "AP-HP.HU HENRI MONDOR",
@@ -11126,7 +11126,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 107,
         "total": 190,
-        "taux": 43.7
+        "taux": 100.0
       },
       {
         "nom": "AP-HP.HU PARIS SEINE-SAINT-DENIS",
@@ -11137,7 +11137,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 96,
         "total": 153,
-        "taux": 37.3
+        "taux": 100.0
       },
       {
         "nom": "AP-HP.NORD UNIVERSITE DE PARIS",
@@ -11148,7 +11148,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 345,
         "total": 496,
-        "taux": 30.4
+        "taux": 100.0
       },
       {
         "nom": "AP-HP.SORBONNE UNIVERSITE",
@@ -11159,7 +11159,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 327,
         "total": 464,
-        "taux": 29.5
+        "taux": 100.0
       },
       {
         "nom": "AP-HP.UNIVERSITE PARIS SACLAY",
@@ -11170,7 +11170,7 @@ window.APPLICATIFS = {
         "non_deploye": 0,
         "non_concerne": 264,
         "total": 339,
-        "taux": 22.1
+        "taux": 100.0
       }
     ]
   },
@@ -11188,7 +11188,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "GH ARMAND TROUSSEAU-LA ROCHE GUYON",
@@ -11198,7 +11202,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 6,
+        "nb_personnes_formees": 18,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-08"
       },
       {
         "nom": "GH BROCA-LA COLLEGIALE",
@@ -11208,7 +11216,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "GH COCHIN",
@@ -11218,7 +11230,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 54,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-15"
       },
       {
         "nom": "GH LARIBOISIERE FERNAND WIDAL",
@@ -11228,7 +11244,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 7,
+        "nb_personnes_formees": 55,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-15"
       },
       {
         "nom": "GROUPE HOSPITAL.NECKER ENFANTS MALADES",
@@ -11238,7 +11258,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 4,
+        "nb_personnes_formees": 28,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-05-21"
       },
       {
         "nom": "GROUPE HOSPITALIER PITIE-LA SALPETRIERE",
@@ -11248,7 +11272,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 3,
+        "nb_personnes_formees": 57,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-02-27"
       },
       {
         "nom": "HEGP",
@@ -11258,7 +11286,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL ADELAIDE HAUTVAL",
@@ -11268,7 +11300,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL AMBROISE PARE",
@@ -11278,7 +11314,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 3,
+        "nb_personnes_formees": 21,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-04"
       },
       {
         "nom": "HOPITAL ANTOINE BECLERE",
@@ -11288,7 +11328,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 8,
+        "nb_personnes_formees": 38,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-11"
       },
       {
         "nom": "HOPITAL AVICENNE",
@@ -11298,7 +11342,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 4,
+        "nb_personnes_formees": 44,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-18"
       },
       {
         "nom": "HOPITAL BEAUJON",
@@ -11308,7 +11356,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 15,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2023-11-16"
       },
       {
         "nom": "HOPITAL BICHAT",
@@ -11318,7 +11370,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 4,
+        "nb_personnes_formees": 27,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2023-11-10"
       },
       {
         "nom": "HOPITAL BRETONNEAU",
@@ -11328,7 +11384,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL CHARLES FOIX",
@@ -11338,7 +11398,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 4,
+        "nb_personnes_formees": 39,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-02"
       },
       {
         "nom": "HOPITAL CORENTIN CELTON",
@@ -11348,7 +11412,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 6,
+        "nb_personnes_formees": 18,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-22"
       },
       {
         "nom": "HOPITAL DE BICETRE",
@@ -11358,7 +11426,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 7,
+        "nb_personnes_formees": 23,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-11"
       },
       {
         "nom": "HOPITAL DE LA ROCHE-GUYON",
@@ -11368,7 +11440,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL DE VAUGIRARD-GABRIEL PALLEZ",
@@ -11378,7 +11454,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL DUPUYTREN",
@@ -11388,7 +11468,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 22,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-25"
       },
       {
         "nom": "HOPITAL EMILE ROUX",
@@ -11398,7 +11482,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 45,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-25"
       },
       {
         "nom": "HOPITAL GEORGES CLEMENCEAU",
@@ -11408,7 +11496,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 7,
+        "nb_personnes_formees": 53,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-25"
       },
       {
         "nom": "HOPITAL JEAN VERDIER",
@@ -11418,7 +11510,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 47,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-03-18"
       },
       {
         "nom": "HOPITAL LOUIS MOURIER",
@@ -11428,7 +11524,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 8,
+        "nb_personnes_formees": 28,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-08"
       },
       {
         "nom": "HOPITAL PAUL BROUSSE",
@@ -11438,7 +11538,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 28,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-22"
       },
       {
         "nom": "HOPITAL PAUL DOUMER",
@@ -11448,7 +11552,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 3,
+        "nb_personnes_formees": 48,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-16"
       },
       {
         "nom": "HOPITAL RAYMOND POINCARE",
@@ -11458,7 +11566,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 7,
+        "nb_personnes_formees": 39,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-22"
       },
       {
         "nom": "HOPITAL RENE MURET - BIGOTTINI",
@@ -11468,7 +11580,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL ROBERT DEBRE",
@@ -11478,7 +11594,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 39,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2023-11-25"
       },
       {
         "nom": "HOPITAL ROTHSCHILD",
@@ -11488,7 +11608,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL SAINT ANTOINE",
@@ -11498,7 +11622,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 3,
+        "nb_personnes_formees": 28,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-02-27"
       },
       {
         "nom": "HOPITAL SAINT LOUIS",
@@ -11508,7 +11636,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 8,
+        "nb_personnes_formees": 55,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-08"
       },
       {
         "nom": "HOPITAL STE PERINE",
@@ -11518,7 +11650,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       },
       {
         "nom": "HOPITAL TENON",
@@ -11528,7 +11664,11 @@ window.APPLICATIFS = {
         "statut": "Déployé",
         "deploye": 1,
         "non_deploye": 0,
-        "non_concerne": 0
+        "non_concerne": 0,
+        "nb_formations": 5,
+        "nb_personnes_formees": 29,
+        "is_demo_indicateurs": true,
+        "date_maj_site": "2024-04-02"
       },
       {
         "nom": "HOTEL-DIEU DE PARIS",
@@ -11538,7 +11678,11 @@ window.APPLICATIFS = {
         "statut": "Non concerné",
         "deploye": 0,
         "non_deploye": 0,
-        "non_concerne": 1
+        "non_concerne": 1,
+        "nb_formations": 0,
+        "nb_personnes_formees": 0,
+        "is_demo_indicateurs": true,
+        "date_maj_site": null
       }
     ],
     "ghu": [
@@ -11609,5 +11753,155 @@ window.APPLICATIFS = {
         "taux": 83.3
       }
     ]
+  }
+};
+window.MOSAIC_APPLICATIFS_DATA = {
+  "applicatifs": [
+    {
+      "id": "orbis",
+      "label": "Orbis",
+      "categorie": "bleu",
+      "fictif": true
+    },
+    {
+      "id": "circuit_mater",
+      "label": "Circuit Mater",
+      "categorie": "bleu",
+      "fictif": true
+    },
+    {
+      "id": "hospit_complete",
+      "label": "Hospitalisation Complète",
+      "categorie": "bleu",
+      "fictif": false
+    },
+    {
+      "id": "glims",
+      "label": "GLIMS v10",
+      "categorie": "jaune",
+      "fictif": true
+    },
+    {
+      "id": "calopix",
+      "label": "Calopix",
+      "categorie": "jaune",
+      "fictif": true
+    },
+    {
+      "id": "pacs",
+      "label": "PACS Locaux",
+      "categorie": "jaune",
+      "fictif": true
+    },
+    {
+      "id": "teleservice",
+      "label": "Téléservice restauration",
+      "categorie": "violet",
+      "fictif": true
+    },
+    {
+      "id": "pharmaclass",
+      "label": "PHARMACLASS",
+      "categorie": "vert",
+      "fictif": false
+    },
+    {
+      "id": "hed",
+      "label": "HED",
+      "categorie": "vert",
+      "fictif": false
+    },
+    {
+      "id": "chimio",
+      "label": "CHIMIO V6",
+      "categorie": "vert",
+      "fictif": false
+    },
+    {
+      "id": "sim_pmsi",
+      "label": "SIM PMSI",
+      "categorie": "vert",
+      "fictif": false
+    }
+  ],
+  "par_ghu": {
+    "AP-HP.HU HENRI MONDOR": {
+      "orbis": "Programmé",
+      "circuit_mater": "Non concerné",
+      "hospit_complete": "Déployé",
+      "glims": "Déployé",
+      "calopix": "Déployé",
+      "pacs": "Déployé",
+      "teleservice": "A programmer",
+      "pharmaclass": "Partiellement déployé",
+      "hed": "A programmer",
+      "chimio": "Non concerné",
+      "sim_pmsi": "Déployé"
+    },
+    "AP-HP.SORBONNE UNIVERSITE": {
+      "orbis": "Non concerné",
+      "circuit_mater": "Déployé",
+      "hospit_complete": "Déployé",
+      "glims": "Non concerné",
+      "calopix": "Déployé",
+      "pacs": "Partiellement déployé",
+      "teleservice": "Déployé",
+      "pharmaclass": "A programmer",
+      "hed": "A programmer",
+      "chimio": "A programmer",
+      "sim_pmsi": "Déployé"
+    },
+    "AP-HP.CENTRE-UNIVERSITE PARIS": {
+      "orbis": "Déployé",
+      "circuit_mater": "Déployé",
+      "hospit_complete": "Déployé",
+      "glims": "Programmé",
+      "calopix": "Programmé",
+      "pacs": "Déployé",
+      "teleservice": "Déployé",
+      "pharmaclass": "Programmé",
+      "hed": "A programmer",
+      "chimio": "Non concerné",
+      "sim_pmsi": "Déployé"
+    },
+    "AP-HP.NORD UNIVERSITE DE PARIS": {
+      "orbis": "Partiellement déployé",
+      "circuit_mater": "Déployé",
+      "hospit_complete": "Déployé",
+      "glims": "Déployé",
+      "calopix": "Déployé",
+      "pacs": "Déployé",
+      "teleservice": "Partiellement déployé",
+      "pharmaclass": "A programmer",
+      "hed": "A programmer",
+      "chimio": "Non concerné",
+      "sim_pmsi": "Déployé"
+    },
+    "AP-HP.UNIVERSITE PARIS SACLAY": {
+      "orbis": "Non concerné",
+      "circuit_mater": "Programmé",
+      "hospit_complete": "Déployé",
+      "glims": "Déployé",
+      "calopix": "A programmer",
+      "pacs": "Déployé",
+      "teleservice": "Partiellement déployé",
+      "pharmaclass": "A programmer",
+      "hed": "A programmer",
+      "chimio": "A programmer",
+      "sim_pmsi": "Déployé"
+    },
+    "AP-HP.HU PARIS SEINE-SAINT-DENIS": {
+      "orbis": "Déployé",
+      "circuit_mater": "Déployé",
+      "hospit_complete": "Déployé",
+      "glims": "Partiellement déployé",
+      "calopix": "Programmé",
+      "pacs": "Déployé",
+      "teleservice": "Non concerné",
+      "pharmaclass": "Déployé",
+      "hed": "A programmer",
+      "chimio": "Déployé",
+      "sim_pmsi": "Déployé"
+    }
   }
 };
